@@ -8,7 +8,7 @@ const TaskStatus = ({
 }) => {
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-4 md:p-6">
-      <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">Task Status</h2>
+      <h2 className="text-xl font-bold text-gray-800 mb-4">Task Status</h2>
       
       <div className="mb-6">
         {inProgressTickets.length > 0 ? (
@@ -26,12 +26,12 @@ const TaskStatus = ({
             ))}
           </div>
         ) : (
-          <p className="text-gray-500 text-center py-8">No tasks in progress</p>
+          <p className="text-gray-500 text-sm">Select a ticket to add to Task Status</p>
         )}
       </div>
 
       <div>
-        <h3 className="font-semibold text-gray-800 mb-3">Resolved Task</h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-3">Resolved Task</h3>
         {resolvedTickets.length > 0 ? (
           <div className="space-y-3">
             {resolvedTickets.map((ticket) => (
@@ -50,7 +50,7 @@ const TaskStatus = ({
             ))}
           </div>
         ) : (
-          <p className="text-gray-500 text-center py-4">No resolved tasks yet.</p>
+          <p className="text-gray-500 text-sm">No resolved tasks yet.</p>
         )}
       </div>
     </div>

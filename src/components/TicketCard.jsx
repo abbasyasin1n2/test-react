@@ -1,4 +1,5 @@
 import React from 'react'
+import calendarIcon from '../assets/ri_calendar-line.png'
 
 const TicketCard = ({ ticket, onClick }) => {
   const getPriorityColor = (priority) => {
@@ -60,7 +61,10 @@ const TicketCard = ({ ticket, onClick }) => {
         </div>
         <div className="flex items-center space-x-2 text-gray-500">
           <span>{ticket.customer}</span>
-          <span>📅 {ticket.createdAt}</span>
+          <span className="flex items-center space-x-1">
+            <img src={calendarIcon} alt="Calendar" className="w-3 h-3" />
+            <span>{ticket.createdAt}</span>
+          </span>
         </div>
       </div>
     </div>

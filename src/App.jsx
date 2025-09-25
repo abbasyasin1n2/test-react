@@ -64,18 +64,20 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <Navbar />
-      <Banner inProgressTickets={inProgressTickets} resolvedTickets={resolvedTickets} />
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <Tickets 
-          tickets={tickets}
-          inProgressTickets={inProgressTickets}
-          resolvedTickets={resolvedTickets}
-          onSelectTicket={handleSelectTicket}
-          onCompleteTask={handleCompleteTask}
-          onRemoveFromResolved={handleRemoveFromResolved}
-        />
+      <div className="bg-gray-100">
+        <Banner inProgressTickets={inProgressTickets} resolvedTickets={resolvedTickets} />
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <Tickets 
+            tickets={tickets}
+            inProgressTickets={inProgressTickets}
+            resolvedTickets={resolvedTickets}
+            onSelectTicket={handleSelectTicket}
+            onCompleteTask={handleCompleteTask}
+            onRemoveFromResolved={handleRemoveFromResolved}
+          />
+        </div>
       </div>
       <Footer />
       <ToastContainer 

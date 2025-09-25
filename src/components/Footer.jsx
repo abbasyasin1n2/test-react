@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-6 md:mt-8 pt-6 md:pt-8">
-          <p className="text-center text-sm text-gray-400">
+          <p className="text-center text-sm text-white">
             © 2025 CS — Ticket System. All rights reserved.
           </p>
         </div>
