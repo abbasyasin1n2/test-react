@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 
 function App() {
   const [tickets, setTickets] = useState([])
-  const [inProgressTicket, setInProgressTicket] = useState(null)
+  const [inProgressTickets, setInProgressTickets] = useState([])
   const [resolvedTickets, setResolvedTickets] = useState([])
 
   useEffect(() => {
@@ -20,25 +20,30 @@ function App() {
 
   const handleSelectTicket = (ticket) => {
     if (ticket.status === 'Open') {
-      setInProgressTicket(ticket)
+      const isAlreadyInProgress = inProgressTickets.find(t => t.id === ticket.id)
       
-      const updatedTickets = tickets.map(t => 
-        t.id === ticket.id ? { ...t, status: 'In-Progress' } : t
-      )
-      setTickets(updatedTickets)
-      
-      toast.success('Ticket moved to In-Progress!')
+      if (!isAlreadyInProgress) {
+        setInProgressTickets([...inProgressTickets, { ...ticket, status: 'In-Progress' }])
+        
+        const updatedTickets = tickets.map(t => 
+          t.id === ticket.id ? { ...t, status: 'In-Progress' } : t
+        )
+        setTickets(updatedTickets)
+        
+        toast.success('Ticket moved to In-Progress!')
+      }
     }
   }
 
-  const handleCompleteTask = () => {
-    if (inProgressTicket) {
-      const updatedTickets = tickets.filter(t => t.id !== inProgressTicket.id)
+  const handleCompleteTask = (ticketToComplete) => {
+    if (ticketToComplete) {
+      const updatedInProgressTickets = inProgressTickets.filter(t => t.id !== ticketToComplete.id)
+      setInProgressTickets(updatedInProgressTickets)
+      
+      setResolvedTickets([...resolvedTickets, { ...ticketToComplete, status: 'Resolved' }])
+      
+      const updatedTickets = tickets.filter(t => t.id !== ticketToComplete.id)
       setTickets(updatedTickets)
-      
-      setResolvedTickets([...resolvedTickets, { ...inProgressTicket, status: 'Resolved' }])
-      
-      setInProgressTicket(null)
       
       toast.success('Ticket has been resolved!')
     }
@@ -57,11 +62,11 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <Banner inProgressTicket={inProgressTicket} resolvedTickets={resolvedTickets} />
+      <Banner inProgressTickets={inProgressTickets} resolvedTickets={resolvedTickets} />
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <Tickets 
           tickets={tickets}
-          inProgressTicket={inProgressTicket}
+          inProgressTickets={inProgressTickets}
           resolvedTickets={resolvedTickets}
           onSelectTicket={handleSelectTicket}
           onCompleteTask={handleCompleteTask}

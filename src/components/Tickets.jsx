@@ -4,7 +4,7 @@ import TaskStatus from './TaskStatus'
 
 const Tickets = ({ 
   tickets, 
-  inProgressTicket, 
+  inProgressTickets, 
   resolvedTickets, 
   onSelectTicket, 
   onCompleteTask, 
@@ -27,7 +27,7 @@ const Tickets = ({
 
       <div className="mt-8 lg:mt-0">
         <TaskStatus 
-          inProgressTicket={inProgressTicket}
+          inProgressTickets={inProgressTickets}
           resolvedTickets={resolvedTickets}
           onCompleteTask={onCompleteTask}
           onRemoveFromResolved={onRemoveFromResolved}

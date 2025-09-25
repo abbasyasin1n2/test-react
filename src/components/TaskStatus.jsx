@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TaskStatus = ({ 
-  inProgressTicket, 
+  inProgressTickets, 
   resolvedTickets, 
   onCompleteTask, 
   onRemoveFromResolved 
@@ -11,15 +11,19 @@ const TaskStatus = ({
       <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">Task Status</h2>
       
       <div className="mb-6">
-        {inProgressTicket ? (
-          <div className="bg-gray-50 rounded-lg p-4">
-            <h4 className="font-medium text-gray-900 mb-2">{inProgressTicket.title}</h4>
-            <button 
-              onClick={onCompleteTask}
-              className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700"
-            >
-              Complete
-            </button>
+        {inProgressTickets.length > 0 ? (
+          <div className="space-y-3">
+            {inProgressTickets.map((ticket) => (
+              <div key={ticket.id} className="bg-gray-50 rounded-lg p-4">
+                <h4 className="font-medium text-gray-900 mb-2">{ticket.title}</h4>
+                <button 
+                  onClick={() => onCompleteTask(ticket)}
+                  className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700"
+                >
+                  Complete
+                </button>
+              </div>
+            ))}
           </div>
         ) : (
           <p className="text-gray-500 text-center py-8">No tasks in progress</p>
