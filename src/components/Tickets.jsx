@@ -10,12 +10,16 @@ const Tickets = ({
   onCompleteTask, 
   onRemoveFromResolved 
 }) => {
+  const openOrInProgressTickets = tickets.filter(
+    ticket => ticket.status === 'Open' || ticket.status === 'In-Progress'
+  )
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
       <div className="lg:col-span-2">
         <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">Customer Tickets</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {tickets.map((ticket) => (
+          {openOrInProgressTickets.map((ticket) => (
             <TicketCard 
               key={ticket.id} 
               ticket={ticket} 

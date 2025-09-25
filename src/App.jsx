@@ -42,7 +42,9 @@ function App() {
       
       setResolvedTickets([...resolvedTickets, { ...ticketToComplete, status: 'Resolved' }])
       
-      const updatedTickets = tickets.filter(t => t.id !== ticketToComplete.id)
+      const updatedTickets = tickets.map(t =>
+        t.id === ticketToComplete.id ? { ...t, status: 'Resolved' } : t
+      )
       setTickets(updatedTickets)
       
       toast.success('Ticket has been resolved!')
@@ -53,8 +55,10 @@ function App() {
     const updatedResolvedTickets = resolvedTickets.filter(t => t.id !== ticket.id)
     setResolvedTickets(updatedResolvedTickets)
     
-    const reopenedTicket = { ...ticket, status: 'Open' }
-    setTickets([...tickets, reopenedTicket])
+    const updatedTickets = tickets.map(t =>
+      t.id === ticket.id ? { ...t, status: 'Open' } : t
+    )
+    setTickets(updatedTickets)
     
     toast.info('Ticket has been reopened.')
   }
